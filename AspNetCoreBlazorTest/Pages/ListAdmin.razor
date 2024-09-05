@@ -1,0 +1,69 @@
+﻿@page "/listadmin"
+@using AspNetCoreBlazorTest.Models;
+@using AspNetCoreBlazorTest.SharedComponents;
+@using Blazorise.DataGrid;
+
+<!-- Page header -->
+<div class="full-box page-header">
+	<h3 class="text-left">
+		<i class="fas fa-users fa-fw"></i> &nbsp; LIST ADMIN
+	</h3>
+	<p class="text-justify">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum rerum animi natus beatae ex. Culpa blanditiis tempore amet alias placeat, obcaecati quaerat ullam, sunt est, odio aut veniam ratione.
+	</p>
+</div>
+
+<div class="container-fluid">
+	<ul class="full-box list-unstyled page-nav-tabs">
+		<li>
+			<a href="admin"><i class="fas fa-user-plus fa-fw"></i> &nbsp; NEW ADMIN</a>
+		</li>
+		<li>
+			<a class="active" href="listadmin"><i class="fas fa-users fa-fw"></i> &nbsp; LIST ADMIN</a>
+		</li>
+	</ul>
+</div>
+
+<!-- Content -->
+<LoadingIndicator @ref="loadingIndicator">
+	<div class="container-fluid">
+		<div>
+			<DataGrid
+				  TItem="Class1"
+				  Data="_admins"
+				  Class="table table-dark table-sm"
+				  PageSize="5"
+				  ShowPager="true"
+				  PagerPosition="DataGridPagerPosition.Bottom"
+				  PagerOptions="new(){ ButtonSize=Size.Small }"
+				  SelectedRowStyling="OnSelectedRowStyling"
+				  RowStyling="OnRowStyling"
+				  HeaderRowStyling="_headerStyle">
+				  <DataGridColumns>
+					<DataGridColumn TextAlignment="TextAlignment.Center" Field="@nameof(Class1.id)" Caption="#" Sortable="false" />
+					<DataGridColumn TextAlignment="TextAlignment.Center" Field="@nameof(Class1.name)" Caption="NAME" Sortable="false" />
+					<DataGridColumn TextAlignment="TextAlignment.Center" Field="@nameof(Class1.username)" Caption="LASTNAME" Sortable="false" />
+					<DataGridColumn TextAlignment="TextAlignment.Center" Caption="UPDATE">
+						<DisplayTemplate>
+							<Button class="btn btn-success" Clicked="@(() => @UpdateAdmin(context))"><i class="fas fa-sync-alt"></i></Button>
+						</DisplayTemplate>
+					</DataGridColumn>
+					<DataGridColumn TextAlignment="TextAlignment.Center" Caption="DELETE">
+						<DisplayTemplate>
+							<Button class="btn btn-warning" Clicked="@(() => @DeleteAdmin(context))"><i class="far fa-trash-alt"></i></Button>
+						</DisplayTemplate>
+					</DataGridColumn>
+				</DataGridColumns>
+			</DataGrid>
+
+		</div>
+	</div>
+</LoadingIndicator>
+
+@if (_showConfirmation)
+{
+	<Confirmation Header="Confirm"
+		Message="Are you sure you want to delete this row?"
+		RowId="@_selectedRowId"
+		OnConfirmationResult="HandleConfirmationResult" />
+}

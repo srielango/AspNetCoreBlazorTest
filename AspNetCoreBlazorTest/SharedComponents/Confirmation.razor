@@ -1,0 +1,42 @@
+﻿<!-- ConfirmationComponent.razor -->
+<div class="overlay">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title roboto-medium text-center" id="exampleModalLongTitle">@Header</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				@Message
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-light roboto-condensed-regular" data-dismiss="modal">Cancel</button>
+				&nbsp;
+				<button @onclick="Confirm" type="button" class="btn btn-light roboto-condensed-regular">Confirm</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+@* <div class="modal fade" id="ModalHelp" tabindex="-1" role="dialog" aria-labelledby="ModalHelpTitle" aria-hidden="false">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title roboto-medium text-center" id="exampleModalLongTitle">@Header</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				@Message
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-light roboto-condensed-regular" data-dismiss="modal">Cancel</button>
+				&nbsp;
+				<button @onclick="Confirm" type="button" class="btn btn-light roboto-condensed-regular">Confirm</button>
+			</div>
+		</div>
+	</div>
+</div> *@

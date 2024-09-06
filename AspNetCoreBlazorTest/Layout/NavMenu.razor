@@ -1,39 +1,47 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">AspNetCoreBlazorTest</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
+﻿<section class="full-box nav-lateral" style="display:@(IsVisible ? "block" : "none");">
+	<div class="full-box nav-lateral-bg show-nav-lateral"></div>
+	<div class="full-box nav-lateral-content">
+		<figure class="full-box nav-lateral-avatar">
+			<i class="far fa-times-circle show-nav-lateral"></i>
+			<img src="./assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
+			<figcaption class="roboto-medium text-center">
+				Carlos Alfaro <br><small class="roboto-condensed-light">Web Developer</small>
+			</figcaption>
+		</figure>
+		<div class="full-box nav-lateral-bar"></div>
+		<nav class="full-box nav-lateral-menu">
+			<ul>
+				<li>
+					<a href="/"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard</a>
+				</li>
+				<li>
+					<a href="#" class="nav-btn-submenu" @onclick="ToggleAdminMenu">
+						<i class="fas fa-user-tie fa-fw"></i> &nbsp; Administrator <i class="fas fa-chevron-down"></i>
+						</a>
+					<ul style="display:@(isAdminMenuOpen ? "block" : "none");">
+						<li><a href="admin"><i class="fas fa-user-plus fa-fw"></i> &nbsp; New admin</a></li>
+						<li><a href="listadmin"><i class="fas fa-users fa-fw"></i> &nbsp; List admin</a></li>
+					</ul>
+				</li>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-    </nav>
-</div>
+				<li>
+					<a href="javascript:void(0)" class="nav-btn-submenu" @onclick="ToggleProductsMenu">
+						<i class="fas fa-box-open fa-fw"></i> &nbsp; Products
+						<i class="fas fa-chevron-down"></i>
+					</a>
+					<ul style="display:@(isProductsMenuOpen ? "block" : "none");">
+						<li><a href="product"><i class="fas fa-box fa-fw"></i> &nbsp; New product</a></li>
+						<li><a href="productlist"><i class="fas fa-boxes fa-fw"></i> &nbsp; List products</a></li>
+					</ul>
+				</li>
 
-@code {
-    private bool collapseNavMenu = true;
+				<li>
+					<a href="base"><i class="fas fa-columns fa-fw"></i> &nbsp; Base template</a>
+				</li>
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+			</ul>
+		</nav>
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+        
+	</div>
+</section>

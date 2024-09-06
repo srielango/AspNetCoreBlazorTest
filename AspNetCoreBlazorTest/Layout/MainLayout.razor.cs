@@ -1,6 +1,6 @@
 ﻿namespace AspNetCoreBlazorTest.Layout
 {
-	public partial class MainLayoutV2
+	public partial class MainLayout
 	{
 		private bool isNavMenuVisible = true;
 

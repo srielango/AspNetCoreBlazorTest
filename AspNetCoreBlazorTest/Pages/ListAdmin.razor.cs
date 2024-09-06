@@ -18,7 +18,7 @@ namespace AspNetCoreBlazorTest.Pages
 
 		LoadingIndicator loadingIndicator;
 
-		private ObservableCollection<Class1> _admins;
+		private ObservableCollection<Models.Admin> _admins;
 		private bool _showConfirmation = false;
 		private int _selectedRowId = 0;
 
@@ -36,20 +36,15 @@ namespace AspNetCoreBlazorTest.Pages
 			PropertyNameCaseInsensitive = true
 		};
 
-		private async Task<ObservableCollection<Class1>> GetAdmins(string path)
+		private async Task<ObservableCollection<Models.Admin>> GetAdmins(string path)
 		{
-			//await Task.CompletedTask;
-
-			//var result = JsonSerializer.Deserialize<ObservableCollection<Class1>>(GetJson());
-			//return result;
-
 			var httpClient = new HttpClient();
 
-			var admins = await httpClient.GetFromJsonAsync<ObservableCollection<Class1>>(path, _options);
-			return admins ?? new ObservableCollection<Class1>();
+			var admins = await httpClient.GetFromJsonAsync<ObservableCollection<Models.Admin>>(path, _options);
+			return admins ?? new ObservableCollection<Models.Admin>();
 		}
 
-		private async Task UpdateAdmin(Class1 selectedAdmin)
+		private async Task UpdateAdmin(Models.Admin selectedAdmin)
 		{
 			var confirmation = await JSRuntime.InvokeAsync<bool>("confirm", "This will update the selected row");
 
@@ -61,7 +56,7 @@ namespace AspNetCoreBlazorTest.Pages
 			}
 		}
 
-		private async Task DeleteAdmin(Class1 selectedAdmin)
+		private async Task DeleteAdmin(Models.Admin selectedAdmin)
 		{
 			_selectedRowId = selectedAdmin.id;
 			_showConfirmation = true;
@@ -78,11 +73,11 @@ namespace AspNetCoreBlazorTest.Pages
             }
         }
 
-		private void OnRowStyling(Class1 admin, DataGridRowStyling styling)
+		private void OnRowStyling(Models.Admin admin, DataGridRowStyling styling)
 		{
 			styling.Class = "";
 		}
-        private void OnSelectedRowStyling(Class1 admin, DataGridRowStyling styling)
+        private void OnSelectedRowStyling(Models.Admin admin, DataGridRowStyling styling)
 		{
 			styling.Class = "";
 

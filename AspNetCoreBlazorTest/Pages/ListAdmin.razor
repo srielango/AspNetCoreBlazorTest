@@ -29,7 +29,7 @@
 	<div class="container-fluid">
 		<div>
 			<DataGrid
-				  TItem="Class1"
+				  TItem="Models.Admin"
 				  Data="_admins"
 				  Class="table table-dark table-sm"
 				  PageSize="5"
@@ -40,17 +40,17 @@
 				  RowStyling="OnRowStyling"
 				  HeaderRowStyling="_headerStyle">
 				  <DataGridColumns>
-					<DataGridColumn TextAlignment="TextAlignment.Center" Field="@nameof(Class1.id)" Caption="#" Sortable="false" />
-					<DataGridColumn TextAlignment="TextAlignment.Center" Field="@nameof(Class1.name)" Caption="NAME" Sortable="false" />
-					<DataGridColumn TextAlignment="TextAlignment.Center" Field="@nameof(Class1.username)" Caption="LASTNAME" Sortable="false" />
+					<DataGridColumn TextAlignment="TextAlignment.Center" Field="@nameof(Models.Admin.id)" Caption="#" Sortable="false" />
+					<DataGridColumn TextAlignment="TextAlignment.Center" Field="@nameof(Models.Admin.name)" Caption="NAME" Sortable="false" />
+					<DataGridColumn TextAlignment="TextAlignment.Center" Field="@nameof(Models.Admin.username)" Caption="LASTNAME" Sortable="false" />
 					<DataGridColumn TextAlignment="TextAlignment.Center" Caption="UPDATE">
 						<DisplayTemplate>
-							<Button class="btn btn-success" Clicked="@(() => @UpdateAdmin(context))"><i class="fas fa-sync-alt"></i></Button>
+							<Button class="btn btn-success" Clicked="@(() => UpdateAdmin(context))"><i class="fas fa-sync-alt"></i></Button>
 						</DisplayTemplate>
 					</DataGridColumn>
 					<DataGridColumn TextAlignment="TextAlignment.Center" Caption="DELETE">
 						<DisplayTemplate>
-							<Button class="btn btn-warning" Clicked="@(() => @DeleteAdmin(context))"><i class="far fa-trash-alt"></i></Button>
+							<Button class="btn btn-warning" Clicked="@(() => DeleteAdmin(context))"><i class="far fa-trash-alt"></i></Button>
 						</DisplayTemplate>
 					</DataGridColumn>
 				</DataGridColumns>

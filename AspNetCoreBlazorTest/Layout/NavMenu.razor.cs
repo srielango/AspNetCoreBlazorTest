@@ -2,7 +2,7 @@
 
 namespace AspNetCoreBlazorTest.Layout
 {
-	public partial class NavMenuV2
+	public partial class NavMenu
 	{
 		[Parameter]
 		public bool IsVisible { get; set; }

@@ -8,6 +8,7 @@ using Microsoft.JSInterop;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Net.Http.Json;
+using AspNetCoreBlazorTest.Interfaces;
 
 namespace AspNetCoreBlazorTest.Pages
 {
@@ -15,6 +16,8 @@ namespace AspNetCoreBlazorTest.Pages
 	{
 		[Inject] IJSRuntime JSRuntime { get; set; }
 		[Inject] ClientAppSettings ClientAppSettings { get; set; }
+		[Inject] IJsonApi Api { get; set; }
+
 
 		LoadingIndicator loadingIndicator;
 
@@ -23,11 +26,10 @@ namespace AspNetCoreBlazorTest.Pages
 		private int _selectedRowId = 0;
 
 		private DataGridRowStyling _headerStyle = new DataGridRowStyling() { Class = "text-center roboto-medium" };
-		private DataGridRowStyling _rowStyle = new DataGridRowStyling() { Class = "text-center" };
 
         protected override async Task OnInitializedAsync()
 		{
-			_admins = await GetAdmins("https://jsonplaceholder.typicode.com/users");
+			_admins = await GetAdmins(ClientAppSettings.JsonUrl);
 			await base.OnInitializedAsync();
 		}
 
@@ -38,9 +40,11 @@ namespace AspNetCoreBlazorTest.Pages
 
 		private async Task<ObservableCollection<Models.Admin>> GetAdmins(string path)
 		{
-			var httpClient = new HttpClient();
+			//var httpClient = new HttpClient();
 
-			var admins = await httpClient.GetFromJsonAsync<ObservableCollection<Models.Admin>>(path, _options);
+			//var admins = await httpClient.GetFromJsonAsync<ObservableCollection<Models.Admin>>(path, _options);
+			var admins = await Api.GetAdmins();
+
 			return admins ?? new ObservableCollection<Models.Admin>();
 		}
 
@@ -72,16 +76,6 @@ namespace AspNetCoreBlazorTest.Pages
                 _admins.Remove(item);
             }
         }
-
-		private void OnRowStyling(Models.Admin admin, DataGridRowStyling styling)
-		{
-			styling.Class = "";
-		}
-        private void OnSelectedRowStyling(Models.Admin admin, DataGridRowStyling styling)
-		{
-			styling.Class = "";
-
-		}
 
 		//private string GetJson()
 		//{
